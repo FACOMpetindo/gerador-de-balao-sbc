@@ -1,8 +1,19 @@
-<script>
+<script lang="ts">
+  import { onMount } from "svelte";
+
   import Balao from "$lib/Balao.svelte"; 
 	import ColorPicker from 'svelte-awesome-color-picker';
 
-  let hex = $state("#f6f0dc");
+  let hex = $state('');
+
+  $effect(() => {
+    if (!hex) return;
+    sessionStorage.setItem("hex", hex);
+  });
+
+  onMount(() => {
+    hex = sessionStorage.getItem("hex") || "#f6f0dc";
+  })
 
   function downloadAsSVG() {
     const svg = document.querySelector("svg");
