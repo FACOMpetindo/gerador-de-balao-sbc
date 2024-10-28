@@ -4,16 +4,32 @@
   import Balao from "$lib/Balao.svelte"; 
 	import ColorPicker from 'svelte-awesome-color-picker';
 
+  let colors = $state([
+    "#f6f0dc",
+    "#000000",
+  ]);
+
   let hex = $state('');
+
+  let selectedColor = $state(0);
+
+  onMount(() => {
+    const storedColors = sessionStorage.getItem("colors");
+    if (storedColors) {
+      colors = JSON.parse(storedColors);
+      hex = colors[0];
+    }
+  });
+  
+  $effect(() => {
+    colors[selectedColor] = hex;
+  });
+
 
   $effect(() => {
     if (!hex) return;
-    sessionStorage.setItem("hex", hex);
+    sessionStorage.setItem("colors", JSON.stringify(colors));
   });
-
-  onMount(() => {
-    hex = sessionStorage.getItem("hex") || "#f6f0dc";
-  })
 
   function downloadAsSVG() {
     const svg = document.querySelector("svg");
@@ -63,6 +79,11 @@
     img.src = url;
   }
 
+  function changeSelectedColor(index: number) {
+    hex = colors[index];
+    selectedColor = index;
+  }
+
 </script>
 
 
@@ -70,10 +91,18 @@
   <div class="flex flex-col justify-center items-center grow">
     <div class="mx-4 sm:mx-0">
       <h1 class="text-3xl text-center font-bold my-4">Gerador de balão SBC</h1>
-      <p class="font-light">Um simples gerador de cor para balões, com possibilidade de exportar para svg e png.</p>
+      <p class="font-light">Um simples gerador de cor para balões, com possibilidade de exportar para SVG e PNG.</p>
     </div>
     <div class="flex flex-col sm:flex-row my-4 gap-4 sm:gap-8 items-center">
       <div class="dark">
+        <div class="flex mx-2 gap-3 mb-[10px] h-10">
+          <button class="button grow p-1" onclick={() => changeSelectedColor(0)} aria-label="Cor de fundo">
+            <div class="size-full rounded" style="background-color: {colors[0]}"></div>
+          </button>
+          <button class="button grow p-1" onclick={() => changeSelectedColor(1)} aria-label="Cor da borda">
+            <div class="size-full rounded" style="background-color: {colors[1]}"></div>
+          </button>
+        </div>
         <ColorPicker
           bind:hex
           isDialog={false}
@@ -85,7 +114,7 @@
         </div>
       </div>
       <div class="order-first sm:order-none h-60 sm:h-[30rem]">
-        <Balao color={hex} />
+        <Balao fillColor={colors[0]} strokeColor={colors[1]} />
       </div>
     </div>
   </div>
