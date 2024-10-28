@@ -2,7 +2,7 @@
     let props = $props();
 </script>
 
-<svg xmlns="http://www.w3.org/2000/svg" width="264.525" height="471.517"
+<svg xmlns="http://www.w3.org/2000/svg" width="auto" height="auto"
     viewBox="0 0 264.525 471.517">
     <g id="Balão">
         <path

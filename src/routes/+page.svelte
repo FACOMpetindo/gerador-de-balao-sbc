@@ -68,37 +68,49 @@
 
 </script>
 
-<div class="container mx-auto h-screen flex flex-col justify-center items-center">
-  <h1 class="text-3xl font-bold my-4">Gerador de balão SBC</h1>
-  <p class="font-light">Um simples gerador de cor para balões, com possibilidade de exportar para svg e png.</p>
-  <div class="flex my-4 gap-8 items-center">
-    <div class="dark">
-      <ColorPicker
-        bind:rgb
-        bind:hsv
-        bind:hex
-        isDialog={false}
-      />
 
-      <div class="flex mx-2 gap-3">
-        <button class="bg-zinc-700 hover:bg-zinc-600 grow px-6 py-2 rounded" onclick={downloadAsSVG}>SVG</button>
-        <button class="bg-zinc-700 hover:bg-zinc-600 grow px-6 py-2 rounded" onclick={downloadAsPNG}>PNG</button>
+<div class="container mx-auto min-h-screen flex flex-col justify-center">
+  <div class="flex flex-col justify-center items-center grow">
+    <div class="mx-4 sm:mx-0">
+      <h1 class="text-3xl text-center font-bold my-4">Gerador de balão SBC</h1>
+      <p class="font-light">Um simples gerador de cor para balões, com possibilidade de exportar para svg e png.</p>
+    </div>
+    <div class="flex flex-col sm:flex-row my-4 gap-4 sm:gap-8 items-center">
+      <div class="dark">
+        <ColorPicker
+          bind:rgb
+          bind:hsv
+          bind:hex
+          isDialog={false}
+        />
+  
+        <div class="flex mx-2 gap-3">
+          <button class="button grow px-6 py-2" onclick={downloadAsSVG}>SVG</button>
+          <button class="button grow px-6 py-2" onclick={downloadAsPNG}>PNG</button>
+        </div>
+      </div>
+      <div class="order-first sm:order-none h-60 sm:h-[30rem]">
+        <Balao color={hex} />
       </div>
     </div>
-    <Balao color={hex} />
   </div>
+
+  <footer class="mb-1">
+    <p class="text-center text-xs">Feito com ❤️ por Vinícius - 2024</p>
+  </footer>
 </div>
 
-<footer class="fixed bottom-0 w-screen">
-  <p class="text-center text-xs">Feito com ❤️ por Vinícius - 2024</p>
-</footer>
 
 <style>
   .dark {
-    --cp-bg-color: #3f3f46;
-		--cp-border-color: #52525b;
+    --cp-bg-color: #3f3f46; /** zinc-700 */
+		--cp-border-color: #52525b; ; /** zinc-600 */
 		--cp-text-color: white;
-		--cp-input-color: #52525b;
-		--cp-button-hover-color: #71717a;
+		--cp-input-color: #52525b; ; /** zinc-600 */
+		--cp-button-hover-color: #71717a; ; /** zinc-500 */
+  }
+
+  .button {
+    @apply rounded bg-zinc-700 border border-zinc-600 hover:bg-zinc-600;
   }
 </style>
