@@ -4,20 +4,6 @@
 
   let hex = $state("#f6f0dc");
 
-  let rgb = $state({
-    "r": 246,
-    "g": 240,
-    "b": 220,
-    "a": 1
-  })
-
-  let hsv = $state({
-    "h": 46,
-    "s": 11,
-    "v": 96,
-    "a": 1
-  });
-
   function downloadAsSVG() {
     const svg = document.querySelector("svg");
 
@@ -78,8 +64,6 @@
     <div class="flex flex-col sm:flex-row my-4 gap-4 sm:gap-8 items-center">
       <div class="dark">
         <ColorPicker
-          bind:rgb
-          bind:hsv
           bind:hex
           isDialog={false}
         />
