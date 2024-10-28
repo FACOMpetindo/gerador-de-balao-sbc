@@ -45,8 +45,8 @@
     const img = new Image();
     img.onload = function() {
         const canvas = document.createElement("canvas");
-        canvas.width = svg.width.baseVal.value;
-        canvas.height = svg.height.baseVal.value;
+        canvas.width = svg.viewBox.baseVal.width;
+        canvas.height = svg.viewBox.baseVal.height;
 
         const ctx = canvas.getContext("2d");
         // @ts-ignore
