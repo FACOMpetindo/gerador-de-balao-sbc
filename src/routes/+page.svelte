@@ -15,7 +15,7 @@
 
     const element = document.createElement("a");
     element.href = url;
-    element.download = "balao.svg";
+    element.download = `balao-${hex}.svg`;
     element.click();
     element.remove();
 
@@ -43,7 +43,7 @@
 
         const element = document.createElement("a");
         element.href = canvas.toDataURL("image/png");
-        element.download = "imagem.png";
+        element.download = `balao-${hex}.png`;
         element.click();
         element.remove();
 
