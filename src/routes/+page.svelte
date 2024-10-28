@@ -17,8 +17,9 @@
     const storedColors = sessionStorage.getItem("colors");
     if (storedColors) {
       colors = JSON.parse(storedColors);
-      hex = colors[0];
     }
+    
+    hex = colors[0];
   });
   
   $effect(() => {
