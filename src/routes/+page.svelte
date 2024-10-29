@@ -9,6 +9,11 @@
     "#000000",
   ]);
 
+  const colorsDescription = [
+    "Cor de fundo",
+    "Cor da borda",
+  ];
+
   let hex = $state('');
 
   let selectedColor = $state(0);
@@ -62,8 +67,8 @@
     const img = new Image();
     img.onload = function() {
         const canvas = document.createElement("canvas");
-        canvas.width = svg.viewBox.baseVal.width;
-        canvas.height = svg.viewBox.baseVal.height;
+        canvas.width = svg.viewBox.baseVal.width * 4;
+        canvas.height = svg.viewBox.baseVal.height * 4;
 
         const ctx = canvas.getContext("2d");
         // @ts-ignore
@@ -97,12 +102,11 @@
     <div class="flex flex-col sm:flex-row my-4 gap-4 sm:gap-8 items-center">
       <div class="dark">
         <div class="flex mx-2 gap-3 mb-[10px] h-10">
-          <button class="button grow p-1" onclick={() => changeSelectedColor(0)} aria-label="Cor de fundo">
-            <div class="size-full rounded" style="background-color: {colors[0]}"></div>
-          </button>
-          <button class="button grow p-1" onclick={() => changeSelectedColor(1)} aria-label="Cor da borda">
-            <div class="size-full rounded" style="background-color: {colors[1]}"></div>
-          </button>
+          {#each colors as color, i}
+            <button class="button grow p-1" onclick={() => changeSelectedColor(i)} aria-label="{colorsDescription[i]}">
+              <div class="size-full rounded" style="background-color: {color}"></div>
+            </button>
+          {/each}
         </div>
         <ColorPicker
           bind:hex
