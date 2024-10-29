@@ -67,7 +67,7 @@
 
         const ctx = canvas.getContext("2d");
         // @ts-ignore
-        ctx.drawImage(img, 0, 0);
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
         const element = document.createElement("a");
         element.href = canvas.toDataURL("image/png");
