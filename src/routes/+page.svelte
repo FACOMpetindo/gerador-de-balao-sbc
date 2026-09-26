@@ -9,6 +9,7 @@
 	import Balao from '$lib/components/Balao.svelte';
 	import ColorEditor from '$lib/components/ColorEditor.svelte';
 	import ExportButtons from '$lib/components/ExportButtons.svelte';
+	import Favicon from '$lib/components/Favicon.svelte';
 	import FloatingBalloons from '$lib/components/FloatingBalloons.svelte';
 	import LayerSelector from '$lib/components/LayerSelector.svelte';
 	import LogoPicker from '$lib/components/LogoPicker.svelte';
@@ -53,6 +54,8 @@
 		sessionStorage.setItem(LOGO_KEY, logo);
 	});
 </script>
+
+<Favicon {svg} />
 
 <div class="mx-auto flex min-h-screen max-w-6xl flex-col justify-center gap-4 p-4 sm:p-6">
 	<main class="grid grid-cols-1 gap-4 xl:grid-cols-[4fr_5fr_5fr]">

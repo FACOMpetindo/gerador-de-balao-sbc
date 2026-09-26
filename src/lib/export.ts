@@ -9,12 +9,24 @@ function blobToDataURL(blob: Blob) {
 	});
 }
 
-async function inlineImages(svg: SVGSVGElement) {
+const dataURLs = new Map<string, Promise<string>>();
+
+function toDataURL(src: string) {
+	let dataURL = dataURLs.get(src);
+	if (!dataURL) {
+		dataURL = fetch(src)
+			.then((response) => response.blob())
+			.then(blobToDataURL);
+		dataURLs.set(src, dataURL);
+	}
+	return dataURL;
+}
+
+export async function inlineImages(svg: SVGSVGElement) {
 	const clone = svg.cloneNode(true) as SVGSVGElement;
 
 	for (const image of clone.querySelectorAll('image')) {
-		const response = await fetch(image.href.baseVal);
-		image.setAttribute('href', await blobToDataURL(await response.blob()));
+		image.setAttribute('href', await toDataURL(image.href.baseVal));
 	}
 
 	return clone;
