@@ -1,8 +1,11 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { onMount, tick } from 'svelte';
+
+	import { replaceState } from '$app/navigation';
 
 	import { defaultColors, logos, type BalloonColors, type Layer, type Logo } from '$lib/balloon';
 	import { randomColors } from '$lib/color';
+	import { readShared } from '$lib/share';
 	import Balao from '$lib/components/Balao.svelte';
 	import ColorEditor from '$lib/components/ColorEditor.svelte';
 	import ExportButtons from '$lib/components/ExportButtons.svelte';
@@ -10,6 +13,7 @@
 	import LayerSelector from '$lib/components/LayerSelector.svelte';
 	import LogoPicker from '$lib/components/LogoPicker.svelte';
 	import RandomizeButton from '$lib/components/RandomizeButton.svelte';
+	import ShareButton from '$lib/components/ShareButton.svelte';
 	import Tile from '$lib/components/Tile.svelte';
 
 	const COLORS_KEY = 'balloon-colors';
@@ -29,6 +33,16 @@
 
 		const storedLogo = sessionStorage.getItem(LOGO_KEY);
 		if (logos.some((option) => option.key === storedLogo)) logo = storedLogo as Logo;
+
+		const url = new URL(location.href);
+		if (!url.search) return;
+
+		const shared = readShared(url.searchParams);
+		colors = { ...colors, ...shared.colors };
+		if (shared.logo) logo = shared.logo;
+
+		url.search = '';
+		tick().then(() => replaceState(url, {}));
 	});
 
 	$effect(() => {
@@ -74,6 +88,9 @@
 			</Tile>
 
 			<Tile title="Exportar">
+				{#snippet actions()}
+					<ShareButton {colors} {logo} />
+				{/snippet}
 				<ExportButtons
 					{svg}
 					filename="balao-{colors.fill.slice(1)}"
