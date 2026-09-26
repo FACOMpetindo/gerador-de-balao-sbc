@@ -7,23 +7,31 @@
 	let { colors, logo = $bindable() }: { colors: BalloonColors; logo: Logo } = $props();
 </script>
 
-<div class="grid grid-cols-3 gap-3">
+<div class="grid grid-cols-5 gap-2">
 	{#each logos as option (option.key)}
 		<button
 			class={[
-				'flex cursor-pointer flex-col items-center gap-2 rounded-2xl border p-2 transition-colors',
+				'cursor-pointer rounded-2xl border p-1.5 transition-colors',
 				logo === option.key
 					? 'border-zinc-500 bg-zinc-800'
 					: 'border-zinc-800 hover:border-zinc-700 hover:bg-zinc-800/50'
 			]}
+			aria-label={option.name}
+			title={option.name}
 			aria-pressed={logo === option.key}
 			onclick={() => (logo = option.key)}
 		>
 			<span
-				class="flex h-16 w-full items-center justify-center rounded-xl border border-white/10 p-2"
+				class="flex aspect-square items-center justify-center rounded-xl border border-white/10 p-1.5"
 				style:background-color={colors.fill}
 			>
-				{#if option.src}
+				{#if option.tinted}
+					<span
+						class="size-full"
+						style:background-color={colors.stroke}
+						style:mask="url({option.src}) center / contain no-repeat"
+					></span>
+				{:else if option.src}
 					<img class="size-full object-contain" src={option.src} alt="" />
 				{:else}
 					<svg class="size-full" viewBox="{x} {y} {width} {height}" fill={colors.stroke}>
@@ -31,7 +39,6 @@
 					</svg>
 				{/if}
 			</span>
-			<span class="text-center text-xs text-balance">{option.name}</span>
 		</button>
 	{/each}
 </div>

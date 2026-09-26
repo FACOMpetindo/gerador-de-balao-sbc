@@ -1,12 +1,13 @@
 <script lang="ts">
+	import type { LogoOption } from '$lib/balloon';
 	import { randomBetween } from '$lib/random';
 	import Balao from './Balao.svelte';
 
 	let {
 		fillColor,
 		strokeColor,
-		logoSrc
-	}: { fillColor: string; strokeColor: string; logoSrc?: string } = $props();
+		logo
+	}: { fillColor: string; strokeColor: string; logo?: LogoOption } = $props();
 
 	type FloatingBalloon = {
 		id: number;
@@ -63,7 +64,7 @@
 			onanimationend={() => remove(balloon.id)}
 		>
 			<div class="sway" style:animation-duration="{balloon.sway}s">
-				<Balao {fillColor} {strokeColor} {logoSrc} />
+				<Balao {fillColor} {strokeColor} {logo} />
 			</div>
 		</div>
 	{/each}

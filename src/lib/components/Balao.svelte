@@ -1,12 +1,15 @@
 <script lang="ts">
+    import type { LogoOption } from '$lib/balloon';
     import SbcLogo, { logoArea } from './SbcLogo.svelte';
 
     let {
         fillColor,
         strokeColor,
-        logoSrc,
+        logo,
         svg = $bindable()
-    }: { fillColor: string; strokeColor: string; logoSrc?: string; svg?: SVGSVGElement } = $props();
+    }: { fillColor: string; strokeColor: string; logo?: LogoOption; svg?: SVGSVGElement } = $props();
+
+    const maskId = $props.id();
 </script>
 
 <svg bind:this={svg} xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"
@@ -28,8 +31,13 @@
         <path
             d="M134.556,6c33.41,0,61.237,9.888,82.706,29.388,19.251,17.486,32.442,42.176,38.148,71.403,7.179,36.772,1.708,78.191-15.011,113.637-8.771,18.596-20.276,35.046-34.194,48.892-14.852,14.774-32.133,26.224-51.364,34.03l-.055.022-.055.023c-7.078,3.038-15.555,4.71-23.87,4.71-5.1,0-9.778-.659-12.515-1.764l-.203-.082-.209-.067c-17.714-5.687-34.195-15.009-48.983-27.708-13.982-12.007-26.124-26.719-36.088-43.726-9.644-16.462-16.853-34.369-21.426-53.225-4.562-18.809-6.268-37.603-5.072-55.857,1.923-29.339,11.37-55.419,27.322-75.42C51.475,27.953,76.537,13.718,108.179,7.945c9.057-1.291,17.931-1.945,26.377-1.945M134.556,0c-8.673,0-17.775.653-27.339,2.022C-53.484,31.223-19.41,268.404,116.1,311.907c3.306,1.334,8.58,2.2,14.76,2.2,7.991,0,17.497-1.446,26.236-5.197C304.036,249.264,303.732,0,134.556,0h0Z" />
     </g>
-    {#if logoSrc}
-        <image href={logoSrc} {...logoArea} />
+    {#if logo?.tinted}
+        <mask id={maskId}>
+            <image href={logo.src} {...logoArea} />
+        </mask>
+        <rect {...logoArea} fill={strokeColor} mask="url(#{maskId})" />
+    {:else if logo?.src}
+        <image href={logo.src} {...logoArea} />
     {:else}
         <g fill={strokeColor}>
             <SbcLogo />

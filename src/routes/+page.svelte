@@ -25,7 +25,7 @@
 	let svg: SVGSVGElement | undefined = $state();
 	let floatingBalloons: FloatingBalloons | undefined = $state();
 
-	const logoSrc = $derived(logos.find((option) => option.key === logo)?.src);
+	const logoOption = $derived(logos.find((option) => option.key === logo));
 
 	onMount(() => {
 		const storedColors = sessionStorage.getItem(COLORS_KEY);
@@ -58,7 +58,7 @@
 	<main class="grid grid-cols-1 gap-4 xl:grid-cols-[4fr_5fr_5fr]">
 		<Tile class="relative min-h-104">
 			<div class="absolute inset-8">
-				<Balao fillColor={colors.fill} strokeColor={colors.stroke} {logoSrc} bind:svg />
+				<Balao fillColor={colors.fill} strokeColor={colors.stroke} logo={logoOption} bind:svg />
 			</div>
 		</Tile>
 
@@ -78,6 +78,9 @@
 			</Tile>
 
 			<Tile title="Logo" class="xl:grow">
+				{#snippet actions()}
+					<span class="text-xs text-zinc-500">{logoOption?.name}</span>
+				{/snippet}
 				<LogoPicker {colors} bind:logo />
 			</Tile>
 		</div>
@@ -105,5 +108,5 @@
 	bind:this={floatingBalloons}
 	fillColor={colors.fill}
 	strokeColor={colors.stroke}
-	{logoSrc}
+	logo={logoOption}
 />
