@@ -11,6 +11,8 @@
 	import ExportButtons from '$lib/components/ExportButtons.svelte';
 	import Favicon from '$lib/components/Favicon.svelte';
 	import FloatingBalloons from '$lib/components/FloatingBalloons.svelte';
+	import GithubIcon from '$lib/components/GithubIcon.svelte';
+	import IconButton from '$lib/components/IconButton.svelte';
 	import LayerSelector from '$lib/components/LayerSelector.svelte';
 	import LogoPicker from '$lib/components/LogoPicker.svelte';
 	import RandomizeButton from '$lib/components/RandomizeButton.svelte';
@@ -67,7 +69,12 @@
 
 		<div class="contents xl:flex xl:flex-col xl:gap-4">
 			<Tile class="order-first xl:order-0">
-				<h1 class="text-3xl font-bold xl:text-2xl">Gerador de balão SBC</h1>
+				<div class="flex items-start justify-between gap-2">
+					<h1 class="text-3xl font-bold xl:text-2xl">Gerador de balão SBC</h1>
+					<IconButton label="Repositório no GitHub" href="https://github.com/FACOMpetindo/gerador-de-balao-sbc">
+						<GithubIcon class="size-5" />
+					</IconButton>
+				</div>
 				<p class="mt-3 text-sm text-zinc-400">
 					Um simples gerador de cor para balões, com possibilidade de exportar para SVG e PNG.
 				</p>
