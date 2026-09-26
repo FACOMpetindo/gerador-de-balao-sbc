@@ -2,10 +2,12 @@
 	import { onMount } from 'svelte';
 
 	import { defaultColors, type BalloonColors, type Layer } from '$lib/balloon';
+	import { randomColors } from '$lib/color';
 	import Balao from '$lib/components/Balao.svelte';
 	import ColorEditor from '$lib/components/ColorEditor.svelte';
 	import ExportButtons from '$lib/components/ExportButtons.svelte';
 	import LayerSelector from '$lib/components/LayerSelector.svelte';
+	import RandomizeButton from '$lib/components/RandomizeButton.svelte';
 	import Tile from '$lib/components/Tile.svelte';
 
 	const STORAGE_KEY = 'balloon-colors';
@@ -40,6 +42,9 @@
 		</Tile>
 
 		<Tile title="Camada" class="lg:col-span-6 lg:col-start-7 lg:row-start-2">
+			{#snippet actions()}
+				<RandomizeButton onclick={() => (colors = randomColors())} />
+			{/snippet}
 			<LayerSelector {colors} bind:selected />
 		</Tile>
 
