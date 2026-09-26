@@ -1,7 +1,27 @@
 const PNG_SCALE = 4;
 
-function svgUrl(svg: SVGSVGElement) {
-	const data = new XMLSerializer().serializeToString(svg);
+function blobToDataURL(blob: Blob) {
+	return new Promise<string>((resolve, reject) => {
+		const reader = new FileReader();
+		reader.onload = () => resolve(reader.result as string);
+		reader.onerror = () => reject(reader.error);
+		reader.readAsDataURL(blob);
+	});
+}
+
+async function inlineImages(svg: SVGSVGElement) {
+	const clone = svg.cloneNode(true) as SVGSVGElement;
+
+	for (const image of clone.querySelectorAll('image')) {
+		const response = await fetch(image.href.baseVal);
+		image.setAttribute('href', await blobToDataURL(await response.blob()));
+	}
+
+	return clone;
+}
+
+async function svgUrl(svg: SVGSVGElement) {
+	const data = new XMLSerializer().serializeToString(await inlineImages(svg));
 	const blob = new Blob([data], { type: 'image/svg+xml;charset=utf-8' });
 	return URL.createObjectURL(blob);
 }
@@ -13,14 +33,14 @@ function download(href: string, filename: string) {
 	link.click();
 }
 
-export function downloadSVG(svg: SVGSVGElement, filename: string) {
-	const url = svgUrl(svg);
+export async function downloadSVG(svg: SVGSVGElement, filename: string) {
+	const url = await svgUrl(svg);
 	download(url, filename);
 	URL.revokeObjectURL(url);
 }
 
-export function downloadPNG(svg: SVGSVGElement, filename: string) {
-	const url = svgUrl(svg);
+export async function downloadPNG(svg: SVGSVGElement, filename: string) {
+	const url = await svgUrl(svg);
 	const img = new Image();
 
 	img.onload = () => {
