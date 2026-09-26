@@ -6,6 +6,7 @@
 	import Balao from '$lib/components/Balao.svelte';
 	import ColorEditor from '$lib/components/ColorEditor.svelte';
 	import ExportButtons from '$lib/components/ExportButtons.svelte';
+	import FloatingBalloons from '$lib/components/FloatingBalloons.svelte';
 	import LayerSelector from '$lib/components/LayerSelector.svelte';
 	import LogoPicker from '$lib/components/LogoPicker.svelte';
 	import RandomizeButton from '$lib/components/RandomizeButton.svelte';
@@ -18,6 +19,7 @@
 	let selected: Layer = $state('fill');
 	let logo: Logo = $state('sbc');
 	let svg: SVGSVGElement | undefined = $state();
+	let floatingBalloons: FloatingBalloons | undefined = $state();
 
 	const logoSrc = $derived(logos.find((option) => option.key === logo)?.src);
 
@@ -72,8 +74,19 @@
 			</Tile>
 
 			<Tile title="Exportar">
-				<ExportButtons {svg} filename="balao-{colors.fill.slice(1)}" />
+				<ExportButtons
+					{svg}
+					filename="balao-{colors.fill.slice(1)}"
+					onexport={() => floatingBalloons?.launch()}
+				/>
 			</Tile>
 		</div>
 	</main>
 </div>
+
+<FloatingBalloons
+	bind:this={floatingBalloons}
+	fillColor={colors.fill}
+	strokeColor={colors.stroke}
+	{logoSrc}
+/>

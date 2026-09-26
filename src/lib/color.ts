@@ -1,11 +1,8 @@
 import type { BalloonColors } from './balloon';
+import { randomBetween } from './random';
 
 // https://www.w3.org/TR/WCAG22/#contrast-minimum
 const MIN_CONTRAST = 4.5;
-
-function randomBetween(min: number, max: number) {
-	return min + Math.random() * (max - min);
-}
 
 function hslToHex(h: number, s: number, l: number) {
 	const a = s * Math.min(l, 1 - l);

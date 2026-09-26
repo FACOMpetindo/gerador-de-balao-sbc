@@ -6,8 +6,8 @@
 
 <button
 	class="cursor-pointer rounded-xl border border-zinc-800 p-1.5 text-zinc-400 transition-colors hover:border-zinc-700 hover:bg-zinc-800 hover:text-zinc-100"
-	aria-label="Cores aleatórias"
-	title="Cores aleatórias"
+	aria-label="Aleatorizar cores"
+	title="Aleatorizar cores"
 	{onclick}
 >
 	<Dice5 class="size-5" />
