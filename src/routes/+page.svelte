@@ -39,37 +39,41 @@
 </script>
 
 <div class="mx-auto flex min-h-screen max-w-6xl flex-col justify-center gap-4 p-4 sm:p-6">
-	<main class="grid grid-cols-1 gap-4 lg:grid-cols-12">
-		<Tile class="lg:col-span-6 lg:col-start-7 lg:row-start-1">
-			<h1 class="text-3xl font-bold sm:text-4xl">Gerador de balão SBC</h1>
-			<p class="mt-3 text-sm text-zinc-400">
-				Um simples gerador de cor para balões, com possibilidade de exportar para SVG e PNG.
-			</p>
-		</Tile>
-
-		<Tile class="relative min-h-104 lg:col-span-6 lg:col-start-1 lg:row-span-4 lg:row-start-1">
+	<main class="grid grid-cols-1 gap-4 xl:grid-cols-[4fr_5fr_5fr]">
+		<Tile class="relative min-h-104">
 			<div class="absolute inset-8">
 				<Balao fillColor={colors.fill} strokeColor={colors.stroke} {logoSrc} bind:svg />
 			</div>
 		</Tile>
 
-		<Tile title="Camada" class="lg:col-span-6 lg:col-start-7 lg:row-start-2">
-			{#snippet actions()}
-				<RandomizeButton onclick={() => (colors = randomColors())} />
-			{/snippet}
-			<LayerSelector {colors} bind:selected />
-		</Tile>
+		<div class="contents xl:flex xl:flex-col xl:gap-4">
+			<Tile class="order-first xl:order-0">
+				<h1 class="text-3xl font-bold xl:text-2xl">Gerador de balão SBC</h1>
+				<p class="mt-3 text-sm text-zinc-400">
+					Um simples gerador de cor para balões, com possibilidade de exportar para SVG e PNG.
+				</p>
+			</Tile>
 
-		<Tile title="Logo" class="lg:col-span-6 lg:col-start-7 lg:row-start-3">
-			<LogoPicker {colors} bind:logo />
-		</Tile>
+			<Tile title="Camada">
+				{#snippet actions()}
+					<RandomizeButton onclick={() => (colors = randomColors())} />
+				{/snippet}
+				<LayerSelector {colors} bind:selected />
+			</Tile>
 
-		<Tile title="Cor" class="lg:col-span-4 lg:col-start-7 lg:row-start-4">
-			<ColorEditor bind:hex={colors[selected]} />
-		</Tile>
+			<Tile title="Logo" class="xl:grow">
+				<LogoPicker {colors} bind:logo />
+			</Tile>
+		</div>
 
-		<Tile title="Exportar" class="lg:col-span-2 lg:col-start-11 lg:row-start-4">
-			<ExportButtons {svg} filename="balao-{colors.fill.slice(1)}" />
-		</Tile>
+		<div class="contents xl:flex xl:flex-col xl:gap-4">
+			<Tile title="Cor" class="xl:grow">
+				<ColorEditor bind:hex={colors[selected]} />
+			</Tile>
+
+			<Tile title="Exportar">
+				<ExportButtons {svg} filename="balao-{colors.fill.slice(1)}" />
+			</Tile>
+		</div>
 	</main>
 </div>
