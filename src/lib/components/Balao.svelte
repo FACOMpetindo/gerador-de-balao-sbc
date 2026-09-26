@@ -1,8 +1,12 @@
 <script lang="ts">
-    let { fillColor, strokeColor = "white" }: { fillColor: string, strokeColor?: string } = $props();
+    let {
+        fillColor,
+        strokeColor,
+        svg = $bindable()
+    }: { fillColor: string; strokeColor: string; svg?: SVGSVGElement } = $props();
 </script>
 
-<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"
+<svg bind:this={svg} xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"
     viewBox="0 0 264.525 471.517">
     <g id="Balão" fill="{strokeColor}">
         <path
