@@ -101,7 +101,7 @@
     </div>
     <div class="flex flex-col sm:flex-row my-4 gap-4 sm:gap-8 items-center">
       <div class="dark">
-        <div class="flex mx-2 gap-3 mb-[10px] h-10">
+        <div class="flex mx-2 gap-3 mb-2.5 h-10">
           {#each colors as color, i}
             <button class="button grow p-1" onclick={() => changeSelectedColor(i)} aria-label="{colorsDescription[i]}">
               <div class="size-full rounded" style="background-color: {color}"></div>
@@ -118,7 +118,7 @@
           <button class="button grow px-6 py-2" onclick={downloadAsPNG}>PNG</button>
         </div>
       </div>
-      <div class="order-first sm:order-none h-60 sm:h-[30rem]">
+      <div class="order-first sm:order-0 h-60 sm:h-120">
         <Balao fillColor={colors[0]} strokeColor={colors[1]} />
       </div>
     </div>
@@ -133,13 +133,9 @@
 <style>
   .dark {
     --cp-bg-color: #3f3f46; /** zinc-700 */
-		--cp-border-color: #52525b; ; /** zinc-600 */
+		--cp-border-color: #52525b; /** zinc-600 */
 		--cp-text-color: white;
-		--cp-input-color: #52525b; ; /** zinc-600 */
-		--cp-button-hover-color: #71717a; ; /** zinc-500 */
-  }
-
-  .button {
-    @apply rounded bg-zinc-700 border border-zinc-600 hover:bg-zinc-600;
+		--cp-input-color: #52525b; /** zinc-600 */
+		--cp-button-hover-color: #71717a; /** zinc-500 */
   }
 </style>
