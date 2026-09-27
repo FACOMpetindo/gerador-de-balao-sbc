@@ -2,23 +2,26 @@
 
 Um simples gerador de cor para balões da Maratona SBC de programação, com possibilidade de exportar para SVG e PNG.
 
-![tela_inicial_do_site](https://github.com/user-attachments/assets/b3e0317d-4aaf-413d-90b1-869f3ca55940)
+![Tela_inicial_do_site](.github/assets/banner.png)
+
+## 🛠️ Rodando localmente
+
+```bash
+npm install
+npm run dev
+```
+
+Outros comandos:
+
+| Comando           | O que faz                                  |
+| ----------------- | ------------------------------------------ |
+| `npm run check`   | Verifica os tipos com o `svelte-check`     |
+| `npm run build`   | Gera a versão de produção na pasta `build` |
+| `npm run preview` | Serve a versão de produção localmente      |
 
 ## 🤝 Contribuindo
 
 1. Faça um fork deste repositório e clone-o.
 2. Crie uma branch com o nome do que será feito.
-3. Realize as modificações necessários e faça um commit.
-4. Dê push do seu repositório e abra uma PR clicando em "Compare & pull request".
-
-
-
-## ⚡ Buildando
-
-Para criar uma versão de produção deste app:
-
-```bash
-npm run build
-```
-
-Você pode pré-visualizar a versão de produção com `npm run preview`.
+3. Faça as modificações necessárias e rode `npm run check`.
+4. Faça um commit, dê push no seu fork e abra uma PR clicando em "Compare & pull request".
