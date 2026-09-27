@@ -16,6 +16,7 @@
 	import LayerSelector from '$lib/components/LayerSelector.svelte';
 	import LogoPicker from '$lib/components/LogoPicker.svelte';
 	import RandomizeButton from '$lib/components/RandomizeButton.svelte';
+	import SavedPalettes from '$lib/components/SavedPalettes.svelte';
 	import ShareButton from '$lib/components/ShareButton.svelte';
 	import Tile from '$lib/components/Tile.svelte';
 
@@ -85,6 +86,7 @@
 					<RandomizeButton onclick={() => (colors = randomColors())} />
 				{/snippet}
 				<LayerSelector {colors} bind:selected />
+				<SavedPalettes bind:colors />
 			</Tile>
 
 			<Tile title="Logo" class="xl:grow">

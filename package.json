@@ -1,7 +1,7 @@
 {
 	"name": "gerador-de-balao-sbc",
 	"version": "1.0.0",
-	"private": "true",
+	"private": true,
 	"type": "module",
 	"engines": {
 		"node": ">=24"

@@ -4,6 +4,12 @@ import { randomBetween } from './random';
 // https://www.w3.org/TR/WCAG22/#contrast-minimum
 const MIN_CONTRAST = 4.5;
 
+const HEX = /^#[0-9a-f]{6}([0-9a-f]{2})?$/i;
+
+export function isHexColor(value: unknown): value is string {
+	return typeof value === 'string' && HEX.test(value);
+}
+
 function hslToHex(h: number, s: number, l: number) {
 	const a = s * Math.min(l, 1 - l);
 	const channel = (n: number) => {
