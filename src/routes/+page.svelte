@@ -63,7 +63,9 @@
 
 <div class="mx-auto flex min-h-screen max-w-6xl flex-col justify-center gap-4 p-4 sm:p-6">
 	<main class="grid grid-cols-1 gap-4 xl:grid-cols-[4fr_5fr_5fr]">
-		<Tile class="relative min-h-104">
+		<Tile
+			class="relative min-h-104 bg-[radial-gradient(var(--color-line-strong)_1px,transparent_1px)] bg-size-[15px_15px] bg-center"
+		>
 			<div class="absolute inset-8">
 				<Balao fillColor={colors.fill} strokeColor={colors.stroke} logo={logoOption} bind:svg />
 			</div>
