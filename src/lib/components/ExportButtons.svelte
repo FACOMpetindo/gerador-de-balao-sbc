@@ -23,7 +23,7 @@
 <div class="grid grid-cols-2 gap-3">
 	{#each formats as format (format.extension)}
 		<button
-			class="cursor-pointer rounded-2xl border border-zinc-800 py-3 font-bold transition-colors hover:border-zinc-700 hover:bg-zinc-800"
+			class="cursor-pointer rounded-2xl border border-line py-3 font-bold transition-colors hover:border-line-strong hover:bg-raised"
 			disabled={!svg}
 			onclick={() => exportAs(format)}
 		>

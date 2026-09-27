@@ -13,8 +13,8 @@
 			class={[
 				'cursor-pointer rounded-2xl border p-1.5 transition-colors',
 				logo === option.key
-					? 'border-zinc-500 bg-zinc-800'
-					: 'border-zinc-800 hover:border-zinc-700 hover:bg-zinc-800/50'
+					? 'border-line-active bg-raised'
+					: 'border-line hover:border-line-strong hover:bg-raised/50'
 			]}
 			aria-label={option.name}
 			title={option.name}
@@ -22,7 +22,7 @@
 			onclick={() => (logo = option.key)}
 		>
 			<span
-				class="flex aspect-square items-center justify-center rounded-xl border border-white/10 p-1.5"
+				class="flex aspect-square items-center justify-center rounded-xl border border-fg/10 p-1.5"
 				style:background-color={colors.fill}
 			>
 				{#if option.tinted}

@@ -2,6 +2,49 @@
 
 @import 'tailwindcss';
 
-body {
-	font-family: 'JetBrains Mono', monospace;
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+	--color-page: var(--page);
+	--color-surface: var(--surface);
+	--color-raised: var(--raised);
+	--color-line: var(--line);
+	--color-line-strong: var(--line-strong);
+	--color-line-active: var(--line-active);
+	--color-fg: var(--fg);
+	--color-muted: var(--muted);
+	--color-subtle: var(--subtle);
+	--color-success: var(--success);
+}
+
+:root {
+	--page: var(--color-zinc-100);
+	--surface: var(--color-white);
+	--raised: var(--color-zinc-100);
+	--line: var(--color-zinc-200);
+	--line-strong: var(--color-zinc-300);
+	--line-active: var(--color-zinc-400);
+	--fg: var(--color-zinc-900);
+	--muted: var(--color-zinc-600);
+	--subtle: var(--color-zinc-500);
+	--success: var(--color-emerald-600);
+}
+
+.dark {
+	--page: var(--color-zinc-950);
+	--surface: var(--color-zinc-900);
+	--raised: var(--color-zinc-800);
+	--line: var(--color-zinc-800);
+	--line-strong: var(--color-zinc-700);
+	--line-active: var(--color-zinc-500);
+	--fg: var(--color-zinc-100);
+	--muted: var(--color-zinc-400);
+	--subtle: var(--color-zinc-500);
+	--success: var(--color-emerald-400);
+}
+
+@layer base {
+	body {
+		font-family: 'JetBrains Mono', monospace;
+	}
 }

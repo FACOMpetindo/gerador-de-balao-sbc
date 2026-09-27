@@ -15,9 +15,9 @@
 	div {
 		--cp-bg-color: transparent;
 		--cp-border-color: transparent;
-		--cp-text-color: white;
-		--cp-input-color: #27272a;
-		--cp-button-hover-color: #3f3f46;
+		--cp-text-color: var(--fg);
+		--cp-input-color: var(--raised);
+		--cp-button-hover-color: var(--line-strong);
 		--picker-width: 240px;
 		--picker-height: 200px;
 		--slider-width: 14px;

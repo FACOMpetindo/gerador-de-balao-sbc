@@ -5,9 +5,16 @@
 		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>Gerador de balão SBC</title>
+		<script>
+			{
+				const theme = localStorage.getItem('theme');
+				const dark = theme ? theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+				document.documentElement.classList.toggle('dark', dark);
+			}
+		</script>
 		%sveltekit.head%
 	</head>
-	<body class="bg-zinc-950 text-zinc-100 antialiased" data-sveltekit-preload-data="hover">
+	<body class="bg-page text-fg antialiased" data-sveltekit-preload-data="hover">
 		<div style="display: contents">%sveltekit.body%</div>
 	</body>
 </html>

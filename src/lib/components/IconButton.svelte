@@ -9,7 +9,7 @@
 	}: { label: string; href?: string; onclick?: () => void; children: Snippet } = $props();
 
 	const className =
-		'block cursor-pointer rounded-xl border border-zinc-800 p-1.5 text-zinc-400 transition-colors hover:border-zinc-700 hover:bg-zinc-800 hover:text-zinc-100';
+		'block cursor-pointer rounded-xl border border-line p-1.5 text-muted transition-colors hover:border-line-strong hover:bg-raised hover:text-fg';
 </script>
 
 {#if href}

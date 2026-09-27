@@ -48,7 +48,7 @@
 
 <div class="mt-3 flex flex-wrap items-center gap-2" role="group" aria-label="Paletas salvas">
 	<button
-		class="flex size-7 cursor-pointer items-center justify-center rounded-full border border-dashed border-zinc-600 text-zinc-400 transition-colors hover:border-zinc-400 hover:text-zinc-100 disabled:cursor-default disabled:opacity-40 disabled:hover:border-zinc-600 disabled:hover:text-zinc-400"
+		class="flex size-7 cursor-pointer items-center justify-center rounded-full border border-dashed border-line-strong text-muted transition-colors hover:border-muted hover:text-fg disabled:cursor-default disabled:opacity-40 disabled:hover:border-line-strong disabled:hover:text-muted"
 		aria-label="Salvar paleta"
 		title={saved ? 'Paleta já salva' : 'Salvar paleta'}
 		disabled={saved}
@@ -61,8 +61,8 @@
 		<div class="group relative">
 			<button
 				class={[
-					'block size-7 cursor-pointer rounded-full border-4 ring-offset-2 ring-offset-zinc-900 transition-transform hover:scale-110',
-					isCurrent(palette) ? 'ring-2 ring-zinc-400' : 'ring-1 ring-white/10'
+					'block size-7 cursor-pointer rounded-full border-4 ring-offset-2 ring-offset-surface transition-transform hover:scale-110',
+					isCurrent(palette) ? 'ring-2 ring-muted' : 'ring-1 ring-fg/10'
 				]}
 				style:background-color={palette.fill}
 				style:border-color={palette.stroke}
@@ -71,7 +71,7 @@
 				onclick={() => (colors = { ...palette })}
 			></button>
 			<button
-				class="absolute -top-1.5 -right-1.5 hidden size-4 cursor-pointer items-center justify-center rounded-full bg-zinc-700 text-zinc-200 group-focus-within:flex group-hover:flex hover:bg-zinc-600 pointer-coarse:flex"
+				class="absolute -top-1.5 -right-1.5 hidden size-4 cursor-pointer items-center justify-center rounded-full bg-line-strong text-fg group-focus-within:flex group-hover:flex hover:bg-line-active pointer-coarse:flex"
 				aria-label="Remover paleta: fundo {palette.fill}, borda {palette.stroke}"
 				title="Remover"
 				onclick={() => remove(i)}
@@ -80,6 +80,6 @@
 			</button>
 		</div>
 	{:else}
-		<span class="text-xs text-zinc-500">Salve combinações para usar depois</span>
+		<span class="text-xs text-subtle">Salve combinações para usar depois</span>
 	{/each}
 </div>

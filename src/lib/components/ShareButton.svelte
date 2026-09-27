@@ -22,7 +22,7 @@
 
 <IconButton label="Copiar link" onclick={copy}>
 	{#if copied}
-		<Check class="size-5 text-emerald-400" />
+		<Check class="size-5 text-success" />
 	{:else}
 		<Link class="size-5" />
 	{/if}

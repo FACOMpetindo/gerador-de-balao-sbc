@@ -18,6 +18,7 @@
 	import RandomizeButton from '$lib/components/RandomizeButton.svelte';
 	import SavedPalettes from '$lib/components/SavedPalettes.svelte';
 	import ShareButton from '$lib/components/ShareButton.svelte';
+	import ThemeToggle from '$lib/components/ThemeToggle.svelte';
 	import Tile from '$lib/components/Tile.svelte';
 
 	const COLORS_KEY = 'balloon-colors';
@@ -70,13 +71,8 @@
 
 		<div class="contents xl:flex xl:flex-col xl:gap-4">
 			<Tile class="order-first xl:order-0">
-				<div class="flex items-start justify-between gap-2">
-					<h1 class="text-3xl font-bold xl:text-2xl">Gerador de balão SBC</h1>
-					<IconButton label="Repositório no GitHub" href="https://github.com/FACOMpetindo/gerador-de-balao-sbc">
-						<GithubIcon class="size-5" />
-					</IconButton>
-				</div>
-				<p class="mt-3 text-sm text-zinc-400">
+				<h1 class="text-3xl font-bold xl:text-2xl">Gerador de balão SBC</h1>
+				<p class="mt-3 text-sm text-muted">
 					Um simples gerador de cor para balões, com possibilidade de exportar para SVG e PNG.
 				</p>
 			</Tile>
@@ -91,7 +87,7 @@
 
 			<Tile title="Logo" class="xl:grow">
 				{#snippet actions()}
-					<span class="text-xs text-zinc-500">{logoOption?.name}</span>
+					<span class="text-xs text-subtle">{logoOption?.name}</span>
 				{/snippet}
 				<LogoPicker {colors} bind:logo />
 			</Tile>
@@ -102,16 +98,25 @@
 				<ColorEditor bind:hex={colors[selected]} />
 			</Tile>
 
-			<Tile title="Exportar">
-				{#snippet actions()}
-					<ShareButton {colors} {logo} />
-				{/snippet}
-				<ExportButtons
-					{svg}
-					filename="balao-{colors.fill.slice(1)}"
-					onexport={() => floatingBalloons?.launch()}
-				/>
-			</Tile>
+			<div class="flex gap-4">
+				<Tile title="Exportar" class="grow">
+					{#snippet actions()}
+						<ShareButton {colors} {logo} />
+					{/snippet}
+					<ExportButtons
+						{svg}
+						filename="balao-{colors.fill.slice(1)}"
+						onexport={() => floatingBalloons?.launch()}
+					/>
+				</Tile>
+
+				<Tile class="flex flex-col justify-center gap-2">
+					<IconButton label="Repositório no GitHub" href="https://github.com/FACOMpetindo/gerador-de-balao-sbc">
+						<GithubIcon class="size-5" />
+					</IconButton>
+					<ThemeToggle />
+				</Tile>
+			</div>
 		</div>
 	</main>
 </div>
